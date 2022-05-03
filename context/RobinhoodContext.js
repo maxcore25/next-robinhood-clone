@@ -25,20 +25,24 @@ export const RobinhoodProvider = ({ children }) => {
   const { isAuthenticated, authenticate, user, logout, Moralis, enableWeb3 } =
     useMoralis();
 
-  useEffect(async () => {
-    if (isAuthenticated) {
-      const account = user.get('ethAddress');
-      let formatAccount = account.slice(0, 4) + '...' + account.slice(-4);
-      setFormattedAccount(formatAccount);
-      setCurrentAccount(account);
-      const currentBalance = await Moralis.Web3API.account.getNativeBalance({
-        chain: 'rinkeby',
-        address: currentAccount,
-      });
-      const balanceToEth = Moralis.Units.FromWei(currentBalance.balance);
-      const formattedBalance = parseFloat(balanceToEth).toFixed(3);
-      setBalance(formattedBalance);
+  useEffect(() => {
+    // ? Check out if that works
+    async function fetchData() {
+      if (isAuthenticated) {
+        const account = user.get('ethAddress');
+        let formatAccount = account.slice(0, 4) + '...' + account.slice(-4);
+        setFormattedAccount(formatAccount);
+        setCurrentAccount(account);
+        const currentBalance = await Moralis.Web3API.account.getNativeBalance({
+          chain: 'rinkeby',
+          address: currentAccount,
+        });
+        const balanceToEth = Moralis.Units.FromWei(currentBalance.balance);
+        const formattedBalance = parseFloat(balanceToEth).toFixed(3);
+        setBalance(formattedBalance);
+      }
     }
+    fetchData();
   }, [isAuthenticated, enableWeb3]);
 
   useEffect(() => {
