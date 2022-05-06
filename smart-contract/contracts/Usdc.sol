@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Btc is ERC20, Ownable {
-    constructor() ERC20("Bitcoin", "BTC") {}
+    constructor() ERC20("Usdc", "USDC") {}
 
     function mint(address to, uint256 amount) public payable {
         _mint(to, amount);
