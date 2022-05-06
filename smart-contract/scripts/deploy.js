@@ -17,3 +17,13 @@ const main = async () => {
   const usdcContract = await usdcFactory.deploy();
   console.log('USDC deployed to:', usdcContract.address);
 };
+
+(async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+})();
