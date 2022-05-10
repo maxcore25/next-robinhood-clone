@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "chart.js": "^3.7.1",
     "moralis": "^1.6.0",
     "next": "12.1.5",
