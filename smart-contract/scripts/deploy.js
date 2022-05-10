@@ -1,21 +1,23 @@
-const { ethers } = require('hardhat');
-
 const main = async () => {
-  const dogeFactory = await ethers.getContracyFactory('Dogecoin');
+  const dogeFactory = await hre.ethers.getContractFactory('DogeCoin');
   const dogeContract = await dogeFactory.deploy();
+  await dogeContract.deployed();
   console.log('Dogecoin deployed to:', dogeContract.address);
 
-  const bitcoinFactory = await ethers.getContracyFactory('Bitcoin');
-  const bitcoinContract = await bitcoinFactory.deploy();
-  console.log('Bitcoin deployed to:', bitcoinContract.address);
+  const linkFactory = await hre.ethers.getContractFactory('Link');
+  const linkContract = await linkFactory.deploy();
+  await linkContract.deployed();
+  console.log('LinkToken deployed to:', linkContract.address);
 
-  const solanaFactory = await ethers.getContracyFactory('Solana');
-  const solanaContract = await solanaFactory.deploy();
-  console.log('Solana deployed to:', solanaContract.address);
+  const daiFactory = await hre.ethers.getContractFactory('Dai');
+  const daiContract = await daiFactory.deploy();
+  await daiContract.deployed();
+  console.log('DaiToken deployed to:', daiContract.address);
 
-  const usdcFactory = await ethers.getContracyFactory('Usdc');
+  const usdcFactory = await hre.ethers.getContractFactory('Usdc');
   const usdcContract = await usdcFactory.deploy();
-  console.log('USDC deployed to:', usdcContract.address);
+  await usdcContract.deployed();
+  console.log('UsdcToken deployed to:', usdcContract.address);
 };
 
 (async () => {
